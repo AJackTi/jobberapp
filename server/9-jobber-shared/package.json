@@ -15,7 +15,7 @@
     "trailingComma": "es5"
   },
   "keywords": [],
-  "name": "@AJackTi/jobber-shared",
+  "name": "@ajackti/jobber-shared",
   "author": "AJackTi <dtrong97vn@gmail.com>",
   "repository": {
     "type": "git+https://github.com/AJackTi/jobber-shared.git",
@@ -51,5 +51,6 @@
     "@babel/preset-typescript": "^7.24.1",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6"
-  }
+  },
+  "main": "index.js"
 }
