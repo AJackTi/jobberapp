@@ -50,6 +50,9 @@ services:
     container_name: rabbitmq_container
     image: rabbitmq:3.13-rc-management-alpine
     restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: jobber
+      RABBITMQ_DEFAULT_PASS: jobberpass
     ports:
       - "5672:5672"
       - "15672:15672"
