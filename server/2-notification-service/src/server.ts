@@ -6,6 +6,7 @@ import { Logger } from 'winston';
 
 import { winstonLogger } from '@ajackti/jobber-shared';
 import { config } from '@notifications/config';
+import { createConnection } from '@notifications/queues/connection';
 
 import { checkConnection } from './elasticsearch';
 import { healthRoutes } from './routes';
@@ -20,7 +21,9 @@ export function start(app: Application): void {
   startElasticSearch();
 }
 
-async function startQueues(): Promise<void> {}
+async function startQueues(): Promise<void> {
+  await createConnection();
+}
 
 function startElasticSearch(): void {
   checkConnection();
