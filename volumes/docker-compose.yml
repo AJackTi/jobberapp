@@ -92,6 +92,30 @@ services:
     depends_on:
       - elasticsearch
 
+  notifications:
+    container_name: notification_container
+    build:
+      context: ../server/2-notification-service
+      dockerfile: Dockerfile.dev
+      args:
+        - NPM_TOKEN=${NPM_TOKEN}
+    restart: always
+    ports:
+      - "4001:4001"
+    env_file: ../server/2-notification-service/.env
+    environment:
+      - ENABLE_APM=0
+      - NODE_ENV=development
+      - CLIENT_URL=http://localhost:3000
+      - RABBITMQ_ENDPOINT=amqp://jobber:jobberpass@localhost:5672
+      - SENDER_EMAIL=sadie.rogahn99@ethereal.email
+      - SENDER_EMAIL_PASSWORD=q4SBhbUJD29JEfnvra
+      - ELASTIC_SEARCH_URL=http://elasticsearch_container:9200
+      - ELASTIC_APM_SERVER_URL=http://localhost:8200
+      - ELASTIC_APM_SECRET_TOKEN=
+    depends_on:
+      - elasticsearch
+
 networks:
   elastic:
     name: elastic

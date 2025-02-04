@@ -4,8 +4,16 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "pm2 start ./build/src/app.js -i 5 --attach --watch | pino-pretty -c",
+    "stop": "pm2 stop all",
+    "delete": "pm2 delete all",
     "dev": "nodemon -r tsconfig-paths/register src/app.ts | pino-pretty -c",
-    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json"
+    "lint:check": "eslint 'src/**/*.ts'",
+    "lint:fix": "eslint 'src/**/*.ts' --fix",
+    "pretty:check": "prettier --check 'src/**/*.{ts,json}'",
+    "pretty:fix": "prettier --write 'src/**/*.{ts,json}'",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json && ts-node tools/copyAssets.ts",
+    "test": "jest --coverage=true -w=1 --forceExit --detectOpenHandles --watchAll=false"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +23,7 @@
     "@types/amqplib": "^0.10.3",
     "@types/email-templates": "^10.0.3",
     "@types/express": "^4.17.20",
-    "@types/jest": "^29.5.7",
+    "@types/jest": "^29.5.14",
     "@types/nodemailer": "^6.4.13",
     "@types/shelljs": "^0.8.15",
     "@typescript-eslint/eslint-plugin": "^6.9.1",

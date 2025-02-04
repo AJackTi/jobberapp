@@ -1,13 +1,10 @@
-import client, {
-  Channel,
-  Connection,
-} from 'amqplib';
+import client, { Channel, Connection } from 'amqplib';
 import { Logger } from 'winston';
 
 import { winstonLogger } from '@ajackti/jobber-shared';
 import { config } from '@notifications/config';
 
-const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, `notificationQueueConnection`, 'debug');
+const log: Logger = winstonLogger(`${config.ELASTIC_SEARCH_URL}`, 'notificationQueueConnection', 'debug');
 
 async function createConnection(): Promise<Channel | undefined> {
   try {
