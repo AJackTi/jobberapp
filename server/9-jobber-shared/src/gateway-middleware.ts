@@ -1,4 +1,8 @@
-import { NextFunction, Request, Response } from 'express';
+import {
+  NextFunction,
+  Request,
+  Response,
+} from 'express';
 import JWT from 'jsonwebtoken';
 
 import { NotAuthorizedError } from './error-handler';

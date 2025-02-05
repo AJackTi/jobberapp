@@ -1,0 +1,17 @@
+FROM node:21-alpine3.18
+
+WORKDIR /app
+COPY package.json ./
+COPY tsconfig.json ./
+COPY src ./src
+COPY .npmrc ./
+RUN ls -a
+ARG NPM_TOKEN
+RUN sed -i "s/\${NPM_TOKEN}/$NPM_TOKEN/g" .npmrc && \
+    npm install && \
+    npm install -g nodemon && \
+    rm -f .npmrc
+
+EXPOSE 4000
+
+CMD [ "npm", "run", "dev" ]
